@@ -1,0 +1,5 @@
+# Install Dell System Update (DSU) and Dell OpenManage Server Administrator (OMSA).
+# http://linux.dell.com/repo/hardware/dsu/
+
+wget -q -O - http://linux.dell.com/repo/hardware/dsu/bootstrap.cgi | bash
+yum -y install dell-system-update srvadmin-all syscfg
