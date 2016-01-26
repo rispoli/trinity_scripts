@@ -2,4 +2,7 @@
 # http://linux.dell.com/repo/hardware/dsu/
 
 wget -q -O - http://linux.dell.com/repo/hardware/dsu/bootstrap.cgi | bash
-yum -y install dell-system-update srvadmin-all syscfg
+yum -y install dell-system-update srvadmin-all syscfg srvadmin-idracadm7
+
+# Run Dell DSU in non-interactive mode to get newest version of BIOS and firmware.
+dsu --non-interactive --apply-upgrades-only
