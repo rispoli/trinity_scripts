@@ -1,0 +1,10 @@
+yum install -y kernel-tools-libs kernel-tools
+
+systemctl stop tuned
+systemctl disable tuned
+
+CPUPOWERFILE="$(awk '/EnvironmentFile=/' /usr/lib/systemd/system/cpupower.service | sed 's/EnvironmentFile=//g')"
+sed -i 's/ondemand/powersave/' $CPUPOWERFILE
+
+systemctl restart cpupower
+systemctl enable cpupower
