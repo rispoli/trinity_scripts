@@ -1,0 +1,1 @@
+docker-enter trinity mount -o remount,size=2G /dev/shm
