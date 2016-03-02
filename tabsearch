@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -o errexit                              # Force exit at the first error
+set -o nounset                              # Treat unset variables as an error
+set -o pipefail
+
+declare -r bold=$(tput bold)
+declare -r normal=$(tput sgr0)
+
+[[ -z "${1:-}" ]] && { echo -e "Usage:\n\t$0 <search term>"; exit 1; }
+declare -r search_term="$1"
+
+for t in $(tabdump); do
+    declare r="$(tabdump $t | grep $search_term | sed '{:q;N;s/\n/\n\t/g;t q}')"
+    if [[ -n "${r:-}" ]]; then
+        echo -e "${bold}$t${normal}:\n\t$r"
+    fi
+done
